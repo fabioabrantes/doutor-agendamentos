@@ -2,9 +2,9 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-//import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-//import { toast } from "sonner";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ import { FormControl, FormMessage } from "@/components/ui/form";
 import { FormItem, FormLabel } from "@/components/ui/form";
 import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-//import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 const loginSchema = z.object({
   email: z
@@ -37,7 +37,7 @@ const loginSchema = z.object({
 type LoginSchemaType = z.infer<typeof loginSchema>;
 
 export default function LoginForm(){
-  //const router = useRouter();
+  const router = useRouter();
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -46,8 +46,8 @@ export default function LoginForm(){
     },
   });
 
-  const handleSubmit = async (values: LoginSchemaType) => {
-    /* await authClient.signIn.email(
+  async function handleSubmit(values: LoginSchemaType){
+    await authClient.signIn.email(
       {
         email: values.email,
         password: values.password,
@@ -60,7 +60,7 @@ export default function LoginForm(){
           toast.error("E-mail ou senha inválidos.");
         },
       },
-    ); */
+    );
     console.log(values);
   };
 
