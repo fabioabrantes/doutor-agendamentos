@@ -80,6 +80,7 @@ export default function LoginForm(){
             <CardTitle>Login</CardTitle>
             <CardDescription>Faça login para continuar.</CardDescription>
           </CardHeader>
+          
           <CardContent className="space-y-4">
             <FormField
               control={form.control}
@@ -94,6 +95,7 @@ export default function LoginForm(){
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="password"
@@ -112,6 +114,7 @@ export default function LoginForm(){
               )}
             />
           </CardContent>
+
           <CardFooter>
             <div className="w-full space-y-2">
               <Button
@@ -125,6 +128,7 @@ export default function LoginForm(){
                   "Entrar"
                 )}
               </Button>
+              
               <Button
                 variant="outline"
                 className="w-full"

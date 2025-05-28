@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-//import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 //import { toast } from "sonner";
 import { z } from "zod";
@@ -25,7 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-//import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 const registerSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }),
@@ -43,7 +43,7 @@ const registerSchema = z.object({
 type RegisterSchemaType = z.infer<typeof registerSchema>;
 
 export default function SignUpForm() {
-  //const router = useRouter();
+  const router = useRouter();
   const form = useForm<RegisterSchemaType>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -54,7 +54,7 @@ export default function SignUpForm() {
   });
 
   async function onSubmit(values: RegisterSchemaType) {
-    /* await authClient.signUp.email(
+    await authClient.signUp.email(
       {
         email: values.email,
         password: values.password,
@@ -66,13 +66,13 @@ export default function SignUpForm() {
         },
         onError: (ctx) => {
           if (ctx.error.code === "USER_ALREADY_EXISTS") {
-            toast.error("E-mail já cadastrado.");
+            //toast.error("E-mail já cadastrado.");
             return;
           }
-          toast.error("Erro ao criar conta.");
+          //toast.error("Erro ao criar conta.");
         },
       },
-    ); */
+    );
     console.log(values);
   }
 
@@ -84,7 +84,7 @@ export default function SignUpForm() {
             <CardTitle>Criar conta</CardTitle>
             <CardDescription>Crie uma conta para continuar.</CardDescription>
           </CardHeader>
-         
+
           <CardContent className="space-y-4">
             <FormField
               control={form.control}
@@ -132,7 +132,7 @@ export default function SignUpForm() {
               )}
             />
           </CardContent>
-          
+
           <CardFooter>
             <Button
               type="submit"
