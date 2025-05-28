@@ -64,12 +64,12 @@ export default function LoginForm(){
     console.log(values);
   };
 
-  const handleGoogleLogin = async () => {
-   /*  await authClient.signIn.social({
+  async function handleGoogleLogin(){
+    await authClient.signIn.social({
       provider: "google",
       callbackURL: "/dashboard",
       scopes: ["email", "profile"],
-    }); */
+    });
   };
 
   return (
