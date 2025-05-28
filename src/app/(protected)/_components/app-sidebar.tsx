@@ -57,10 +57,12 @@ const items = [
 
 export function AppSidebar() {
   const router = useRouter();
+
   const session = authClient.useSession();
+
   const pathname = usePathname();
 
-  async function handleSignOut(){
+  async function handleSignOut() {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
@@ -68,7 +70,7 @@ export function AppSidebar() {
         },
       },
     });
-  };
+  }
 
   return (
     <Sidebar>
@@ -107,7 +109,7 @@ export function AppSidebar() {
                   </Avatar>
                   <div>
                     <p className="text-sm">
-                     {/*  {session.data?.user?.clinic?.name} */}
+                      {session.data?.user?.clinic?.name}
                     </p>
                     <p className="text-muted-foreground text-sm">
                       {session.data?.user.email}
