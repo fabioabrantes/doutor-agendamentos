@@ -66,14 +66,14 @@ const formSchema = z
       path: ["availableToTime"],
     },
   );
-
+type FormSchemaType = z.infer<typeof formSchema>;
 interface UpsertDoctorFormProps {
   doctor?: typeof doctorsTable.$inferSelect;
   onSuccess?: () => void;
 }
 
 const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormSchemaType>({
     shouldUnregister: true,
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -98,7 +98,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: FormSchemaType) => {
     upsertDoctorAction.execute({
       ...values,
       id: doctor?.id,
@@ -118,6 +118,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
             : "Adicione um novo médico."}
         </DialogDescription>
       </DialogHeader>
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
@@ -126,6 +127,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Nome</FormLabel>
+
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -133,12 +135,14 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="specialty"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Especialidade</FormLabel>
+
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -148,6 +152,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
                       <SelectValue placeholder="Selecione uma especialidade" />
                     </SelectTrigger>
                   </FormControl>
+
                   <SelectContent>
                     {medicalSpecialties.map((specialty) => (
                       <SelectItem key={specialty.value} value={specialty.value}>
@@ -156,10 +161,12 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
                     ))}
                   </SelectContent>
                 </Select>
+                
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="appointmentPrice"
@@ -184,12 +191,14 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="availableFromWeekDay"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Dia inicial de disponibilidade</FormLabel>
+                
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -213,6 +222,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="availableToWeekDay"
@@ -242,12 +252,14 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="availableFromTime"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Horário inicial de disponibilidade</FormLabel>
+                
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -257,6 +269,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
                       <SelectValue placeholder="Selecione um horário" />
                     </SelectTrigger>
                   </FormControl>
+                  
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Manhã</SelectLabel>
@@ -311,6 +324,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="availableToTime"
@@ -380,6 +394,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
               </FormItem>
             )}
           />
+
           <DialogFooter>
             <Button type="submit" disabled={upsertDoctorAction.isPending}>
               {upsertDoctorAction.isPending
