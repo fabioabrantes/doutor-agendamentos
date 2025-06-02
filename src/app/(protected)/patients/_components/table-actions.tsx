@@ -59,13 +59,17 @@ export default function PatientsTableActions({ patient }: PatientsTableActionsPr
               <MoreVerticalIcon className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
+
           <DropdownMenuContent>
             <DropdownMenuLabel>{patient.name}</DropdownMenuLabel>
+            
             <DropdownMenuSeparator />
+            
             <DropdownMenuItem onClick={() => setUpsertDialogIsOpen(true)}>
               <EditIcon />
               Editar
             </DropdownMenuItem>
+
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
@@ -73,18 +77,22 @@ export default function PatientsTableActions({ patient }: PatientsTableActionsPr
                   Excluir
                 </DropdownMenuItem>
               </AlertDialogTrigger>
+
               <AlertDialogContent>
                 <AlertDialogHeader>
                   <AlertDialogTitle>
                     Tem certeza que deseja deletar esse paciente?
                   </AlertDialogTitle>
+
                   <AlertDialogDescription>
                     Essa ação não pode ser revertida. Isso irá deletar o
                     paciente e todas as consultas agendadas.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
+
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                  
                   <AlertDialogAction onClick={handleDeletePatientClick}>
                     Deletar
                   </AlertDialogAction>

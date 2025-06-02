@@ -37,14 +37,17 @@ export default async function PatientsPage() {
       <PageHeader>
         <PageHeaderContent>
           <PageTitle>Pacientes</PageTitle>
+
           <PageDescription>
             Gerencie os pacientes da sua clínica
           </PageDescription>
         </PageHeaderContent>
+        
         <PageActions>
           <AddPatientButton />
         </PageActions>
       </PageHeader>
+      
       <PageContent>
         <DataTable data={patients} columns={patientsTableColumns} />
       </PageContent>
