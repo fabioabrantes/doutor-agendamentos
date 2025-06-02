@@ -65,6 +65,7 @@ const formSchema = z.object({
     message: "Horário é obrigatório.",
   }),
 });
+type FormSchemaType =z.infer<typeof formSchema>;
 
 interface AddAppointmentFormProps {
   isOpen: boolean;
@@ -79,7 +80,7 @@ export default function AddAppointmentForm({
   onSuccess,
   isOpen,
 }: AddAppointmentFormProps){
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormSchemaType>({
     shouldUnregister: true,
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -142,7 +143,7 @@ export default function AddAppointmentForm({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: FormSchemaType) => {
     createAppointmentAction.execute({
       ...values,
       appointmentPriceInCents: values.appointmentPrice * 100,
@@ -290,6 +291,7 @@ export default function AddAppointmentForm({
                         date < new Date() || !isDateAvailable(date)
                       }
                       initialFocus
+                      locale={ptBR}
                     />
                   </PopoverContent>
                 </Popover>
