@@ -43,7 +43,7 @@ interface DoctorCardProps {
   doctor: typeof doctorsTable.$inferSelect;
 }
 
-export default function DoctorCard ({ doctor }: DoctorCardProps){
+export default function DoctorCard({ doctor }: DoctorCardProps) {
   const [isUpsertDoctorDialogOpen, setIsUpsertDoctorDialogOpen] =
     useState(false);
 
@@ -112,7 +112,7 @@ export default function DoctorCard ({ doctor }: DoctorCardProps){
           <DialogTrigger asChild>
             <Button className="w-full">Ver detalhes</Button>
           </DialogTrigger>
-          
+
           <UpsertDoctorForm
             doctor={{
               ...doctor,
@@ -151,6 +151,4 @@ export default function DoctorCard ({ doctor }: DoctorCardProps){
       </CardFooter>
     </Card>
   );
-};
-
-
+}
