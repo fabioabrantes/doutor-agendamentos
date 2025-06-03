@@ -96,8 +96,8 @@ export default function AddAppointmentForm({
   const selectedPatientId = form.watch("patientId");
   const selectedDate = form.watch("date");
 
-  const { data: availableTimes } = useQuery({
-    queryKey: ["available-times", selectedDate, selectedDoctorId],
+  const { data: availableTimes } = useQuery({ // faz uma chamada a uma api para pegar um dado
+    queryKey: ["available-times", selectedDate, selectedDoctorId],//passa umn nome da chave e as dependencia usada na função abaixo
     queryFn: () =>
       getAvailableTimes({
         date: dayjs(selectedDate).format("YYYY-MM-DD"),
@@ -173,6 +173,7 @@ export default function AddAppointmentForm({
           Crie um novo agendamento para sua clínica.
         </DialogDescription>
       </DialogHeader>
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField

@@ -8,3 +8,5 @@ export const generateTimeSlots = () => {
   }
   return slots;
 };
+
+// [05:00:00 -> 23:00:00]
