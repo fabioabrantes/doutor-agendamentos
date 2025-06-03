@@ -152,11 +152,15 @@ export default function AddAppointmentForm({
 
   const isDateAvailable = (date: Date) => {
     if (!selectedDoctorId) return false;
+
     const selectedDoctor = doctors.find(
       (doctor) => doctor.id === selectedDoctorId,
     );
+
     if (!selectedDoctor) return false;
-    const dayOfWeek = date.getDay();
+
+    const dayOfWeek = date.getDay(); // pego o dia da semana
+
     return (
       dayOfWeek >= selectedDoctor?.availableFromWeekDay &&
       dayOfWeek <= selectedDoctor?.availableToWeekDay

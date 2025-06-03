@@ -25,6 +25,7 @@ export const addAppointment = actionClient
       throw new Error("Clinic not found");
     }
 
+    // verifica se a data é valida
     const availableTimes = await getAvailableTimes({
       doctorId: parsedInput.doctorId,
       date: dayjs(parsedInput.date).format("YYYY-MM-DD"),
