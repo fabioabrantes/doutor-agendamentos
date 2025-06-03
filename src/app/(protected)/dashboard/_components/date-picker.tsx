@@ -33,7 +33,7 @@ export function DatePicker({
   const handleDateSelect = (dateRange: DateRange | undefined) => {
     if (dateRange?.from) {
       setFrom(dateRange.from, {
-        shallow: false,
+        shallow: false,// o next recarrega a página quando o valor muda
       });
     }
     if (dateRange?.to) {
@@ -47,7 +47,7 @@ export function DatePicker({
     from,
     to,
   };
-  
+
   return (
     <div className={cn("grid gap-2", className)}>
       <Popover>
