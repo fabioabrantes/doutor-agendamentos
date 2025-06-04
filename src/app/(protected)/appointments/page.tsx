@@ -19,16 +19,19 @@ import { auth } from "@/lib/auth";
 import AddAppointmentButton from "./_components/add-appointment-button";
 import { appointmentsTableColumns } from "./_components/table-columns";
 
-export default async function AppointmentsPage(){
+export default async function AppointmentsPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  
+
   if (!session?.user) {
     redirect("/authentication");
   }
   if (!session.user.clinic) {
     redirect("/clinic-form");
+  }
+  if (!session.user.plan) {
+    redirect("/new-subscription");
   }
 
   const [patients, doctors, appointments] = await Promise.all([
@@ -65,5 +68,4 @@ export default async function AppointmentsPage(){
       </PageContent>
     </PageContainer>
   );
-};
-
+}

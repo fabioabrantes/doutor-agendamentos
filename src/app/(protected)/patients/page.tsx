@@ -29,6 +29,10 @@ export default async function PatientsPage() {
   if (!session.user.clinic) {
     redirect("/clinic-form");
   }
+  if (!session.user.plan) {
+    redirect("/new-subscription");
+  }
+
   const patients = await db.query.patientsTable.findMany({
     where: eq(patientsTable.clinicId, session.user.clinic.id),
   });
@@ -42,12 +46,12 @@ export default async function PatientsPage() {
             Gerencie os pacientes da sua clínica
           </PageDescription>
         </PageHeaderContent>
-        
+
         <PageActions>
           <AddPatientButton />
         </PageActions>
       </PageHeader>
-      
+
       <PageContent>
         <DataTable data={patients} columns={patientsTableColumns} />
       </PageContent>
