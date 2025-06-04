@@ -17,12 +17,15 @@ export default async function SubscriptionPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   if (!session) {
     redirect("/login");
   }
+
   if (!session.user.clinic) {
     redirect("/clinic-form");
   }
+  
   return (
     <PageContainer>
       <PageHeader>

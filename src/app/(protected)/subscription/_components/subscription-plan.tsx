@@ -22,6 +22,7 @@ export function SubscriptionPlan({
   userEmail,
 }: SubscriptionPlanProps) {
   const router = useRouter();
+
   const createStripeCheckoutAction = useAction(createStripeCheckout, {
     onSuccess: async ({ data }) => {
       if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
@@ -41,6 +42,7 @@ export function SubscriptionPlan({
       });
     },
   });
+  
   const features = [
     "Cadastro de até 3 médicos",
     "Agendamentos ilimitados",
@@ -65,15 +67,18 @@ export function SubscriptionPlan({
       <CardHeader>
         <div className="flex items-center justify-between">
           <h3 className="text-2xl font-bold text-gray-900">Essential</h3>
+         
           {active && (
             <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
               Atual
             </Badge>
           )}
         </div>
+
         <p className="text-gray-600">
           Para profissionais autônomos ou pequenas clínicas
         </p>
+
         <div className="flex items-baseline">
           <span className="text-3xl font-bold text-gray-900">R$59</span>
           <span className="ml-1 text-gray-600">/ mês</span>
