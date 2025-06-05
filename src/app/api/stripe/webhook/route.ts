@@ -33,16 +33,20 @@ export const POST = async (request: Request) => {
       if (!event.data.object.id) {
         throw new Error("Subscription ID not found");
       }
-      const { subscription, subscription_details, customer } = event.data
-        .object as unknown as {
+
+      const { customer } = event.data.object as unknown as {
         customer: string;
-        subscription: string;
+      };
+
+      const { subscription_details } = event.data.object.parent as unknown as {
         subscription_details: {
+          subscription: string;
           metadata: {
             userId: string;
           };
         };
       };
+      const subscription = subscription_details.subscription;
 
       if (!subscription) {
         throw new Error("Subscription not found");
@@ -52,7 +56,7 @@ export const POST = async (request: Request) => {
       if (!userId) {
         throw new Error("User ID not found");
       }
-      
+
       await db
         .update(usersTable)
         .set({
@@ -89,10 +93,12 @@ export const POST = async (request: Request) => {
           plan: null,
         })
         .where(eq(usersTable.id, userId));
+      break;
     }
   }
 
   return NextResponse.json({
+    // Informa o stripe que o webhook foi recebido com sucesso
     received: true,
   });
 };

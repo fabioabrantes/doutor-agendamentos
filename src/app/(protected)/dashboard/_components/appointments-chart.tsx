@@ -25,18 +25,34 @@ interface DailyAppointment {
 
 interface AppointmentsChartProps {
   dailyAppointmentsData: DailyAppointment[];
+  from?: string; // A data 'from' no formato YYYY-MM-DD
+  to?:string
 }
 
 export default function AppointmentsChart({
   dailyAppointmentsData,
+  from,
+  to
 }: AppointmentsChartProps) {
-  
-  // Gerar 21 dias: 10 antes + hoje + 10 depois
+
+/*   // Gerar 21 dias: 10 antes + hoje ou do from + 10 depois
   const chartDays = Array.from({ length: 21 }).map((_, i) =>
-    dayjs()
+    (from ? dayjs(from) : dayjs())
       .subtract(10 - i, "days")
       .format("YYYY-MM-DD"),
   );
+ */
+// Converte as strings 'from' e 'to' para objetos dayjs para manipulação
+const startDate = from ? dayjs(from) : dayjs();
+const endDate = to ? dayjs(to) : dayjs();
+
+// Calcula a diferença em dias entre as duas datas (+1 para incluir o dia final)
+const numberOfDays = endDate.diff(startDate, 'day') + 1;
+
+// Gera as datas do gráfico com base no intervalo 'from' e 'to'
+const chartDays = Array.from({ length: numberOfDays }).map((_, i) =>
+  startDate.add(i, "days").format("YYYY-MM-DD"),
+);
 
   const chartData = chartDays.map((date) => {
     const dataForDay = dailyAppointmentsData.find((item) => item.date === date);

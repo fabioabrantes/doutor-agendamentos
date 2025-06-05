@@ -38,7 +38,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md">       
         <SubscriptionPlan userEmail={session.user.email} />
       </div>
 

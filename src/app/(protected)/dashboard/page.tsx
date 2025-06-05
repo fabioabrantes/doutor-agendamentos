@@ -56,7 +56,7 @@ export default async function DashboardPage({
       `/dashboard?from=${dayjs().format("YYYY-MM-DD")}&to=${dayjs().add(1, "month").format("YYYY-MM-DD")}`,
     );
   }
-
+  console.log(from, to);
   const {
     totalRevenue,
     totalAppointments,
@@ -99,7 +99,11 @@ export default async function DashboardPage({
           totalDoctors={totalDoctors.total}
         />
         <div className="grid grid-cols-[2.25fr_1fr] gap-4">
-          <AppointmentsChart dailyAppointmentsData={dailyAppointmentsData} />
+          <AppointmentsChart
+            dailyAppointmentsData={dailyAppointmentsData}
+            from={from}
+            to={to}
+          />
           <TopDoctors doctors={topDoctors} />
         </div>
 
@@ -108,7 +112,7 @@ export default async function DashboardPage({
             <CardHeader>
               <div className="flex items-center gap-3">
                 <Calendar className="text-muted-foreground" />
-                
+
                 <CardTitle className="text-base">
                   Agendamentos de hoje
                 </CardTitle>
