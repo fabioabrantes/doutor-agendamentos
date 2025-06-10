@@ -1,5 +1,6 @@
 import { headers } from "next/dist/server/request/headers";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 
 import {
   Dialog,
@@ -11,6 +12,17 @@ import {
 import { auth } from "@/lib/auth";
 
 import ClinicForm from "./_components/form";
+
+export const metadata: Metadata = {
+  title: "Clínica",
+  keywords: [
+    "agendamento de consultas",
+    "gestão de clínic",
+    "controle de agenda de médicos e pacientes",
+  ],
+  description: "O seu sistema de gestão de agendamento de consultas",
+  authors: [{ name: "Fabio Diniz", url: "" }],
+};
 
 export default async function ClinicFormPage() {
   const session = await auth.api.getSession({

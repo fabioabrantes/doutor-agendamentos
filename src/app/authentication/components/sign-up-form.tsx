@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -62,6 +63,7 @@ export default function SignUpForm() {
       },
       {
         onSuccess: () => {
+          toast.success("Conta criada com sucesso!");
           router.push("/dashboard");
         },
         onError: (ctx) => {
@@ -133,7 +135,7 @@ export default function SignUpForm() {
             />
           </CardContent>
 
-          <CardFooter>
+          <CardFooter className="flex flex-col gap-4">
             <Button
               type="submit"
               className="w-full"
@@ -144,6 +146,10 @@ export default function SignUpForm() {
               ) : (
                 "Criar conta"
               )}
+            </Button>
+
+            <Button className="w-full">
+              <Link href="/">Voltar</Link>
             </Button>
           </CardFooter>
         </form>

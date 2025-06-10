@@ -37,6 +37,7 @@ export default function ClinicForm() {
   async function onSubmit(data: ClinicFormType) {
     try {
       await createClinic(data.name);
+      toast.success("Clínica criada com sucesso!");
     } catch (error) {
       if (isRedirectError(error)) {
         return;
