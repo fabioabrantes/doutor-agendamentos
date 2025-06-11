@@ -2,9 +2,9 @@ import { eq } from "drizzle-orm";
 import { Calendar } from "lucide-react";
 import { headers } from "next/headers";
 
-import { auth } from "@/lib/auth";
 import { db } from "@/db";
 import { appointmentsTable } from "@/db/schema";
+import { auth } from "@/lib/auth";
 
 export default async function NextAppointmentsCard(){
   const session = await auth.api.getSession({

@@ -2,14 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Upload, User } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import { useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { NumericFormat } from "react-number-format";
 import { toast } from "sonner";
 import { z } from "zod";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import React, { useState } from "react";
 
 import { upsertDoctor } from "@/actions/upsert-doctor";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DialogContent,

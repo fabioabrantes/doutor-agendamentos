@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { auth } from "@/lib/auth";
 

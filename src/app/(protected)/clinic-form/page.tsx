@@ -1,6 +1,6 @@
+import { Metadata } from "next";
 import { headers } from "next/dist/server/request/headers";
 import { redirect } from "next/navigation";
-import { Metadata } from "next";
 
 import {
   Dialog,

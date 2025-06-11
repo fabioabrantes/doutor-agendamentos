@@ -5,9 +5,9 @@ import { File as FormidableFile, IncomingForm } from "formidable";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { auth } from "@/lib/auth";
 import { db } from "@/db";
 import { doctorsTable } from "@/db/schema";
+import { auth } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";

@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
+import { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { Metadata } from "next";
 
 import {
   PageActions,

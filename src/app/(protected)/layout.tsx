@@ -1,6 +1,7 @@
 import "../globals.css";
 
 import type { Metadata } from "next";
+
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 import { AppSidebar } from "./_components/app-sidebar";
