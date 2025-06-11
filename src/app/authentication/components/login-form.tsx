@@ -21,7 +21,7 @@ import { FormItem, FormLabel } from "@/components/ui/form";
 import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
-import icon from "@/public/g-icon.svg";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -137,7 +137,7 @@ export default function LoginForm() {
               type="button"
               onClick={handleGoogleLogin}
             >
-              <Image src={icon} width={20} height={20} alt="Google Ícone" />
+              <Image src="/g-icon.svg" width={20} height={20} alt="Google Ícone" />
               Entrar com Google
             </Button>
 
